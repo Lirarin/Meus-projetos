@@ -1,3 +1,18 @@
+<script>
+  const login = "../login/login.html"
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // User is signed in
+      // Allow access to other HTML files
+    } else {
+      // User is not signed in
+      // Redirect to login page
+      window.location.href = login;
+    }
+  });
+  
+</script>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -21,10 +36,11 @@
             <li><a href="/views/gta4/NewGTA4.html">GTA IV</a></li>
             <li><a href="/views/gta5/NewGTA5.html">GTA V</a></li>
             <li><a href="/views/gta6/NewGTA6.html">GTA VI</a></li>
-            <li><a href="/views/gtarp/NewGTARP.html">GTA RP</a></li>view
+            <li><a href="/views/gtarp/NewGTARP.html">GTA RP</a></li>
             <li><a href="/views/download/Download.html">Downloads</a></li>
             <li><a href="/views/login/Login.html">Login</a></li>
             <li><a href="/views/cadastro/Cadastro.html">Cadastro</a></li>
+            <li><a onclick="logout()">Deslogar</a></li>
           </ul>
         </nav>
       </header>
@@ -86,7 +102,7 @@
             <a href="">
                 <h3>Fique Atento</h3>
                 <p>
-                   Fique atendo as novas atualizações, fique por dentro de tudo qua se passa no jogo!
+                    Fique atendo as novas atualizações, fique por dentro de tudo qua se passa no jogo!
                 </p>
               </a>
             </li>
@@ -104,3 +120,42 @@
       </main>
 </body>
 </html>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyAjxgYLuiOV5OsNbBhwSh8OYYlZ7Nhoznc",
+      authDomain: "emilyteste-48d45.firebaseapp.com",
+      projectId: "emilyteste-48d45",
+      storageBucket: "emilyteste-48d45.appspot.com",
+      messagingSenderId: "524687159099",
+      appId: "1:524687159099:web:0f8874d185d8281807511e",
+      measurementId: "G-XDER2MH4XL"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+    // Log out function
+    function logout() {
+      firebase.auth().signOut()
+        .then(() => {
+          // Sign-out successful.
+          alert("Deslogado com sucesso");
+          window.location.href = "../login/login.html"; // Redirect to login.html
+        })
+        .catch((error) => {
+          // An error happened.
+        });
+    }
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in, allow access to the HTML file
+      } else {
+        alert("usuário não logado, faça seu login")
+        window.location.replace("../login/login.html");
+      }
+    });
+  </script>

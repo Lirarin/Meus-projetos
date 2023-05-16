@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/views/cadastro/Cadastro.css">
 </head>
 <body>
-  <header>
+    <header>
     <h1>Cadastro</h1>
     <nav>
         <ul>
@@ -54,6 +54,47 @@
     <script src="/views/cadastro/Cadastro.js"></script>
     <footer>
         <p> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> <br> © 2023</p>
-      </footer>
+    </footer>
 </body>
 </html>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+<script>
+    const login = "../login/login.html"
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyAjxgYLuiOV5OsNbBhwSh8OYYlZ7Nhoznc",
+        authDomain: "emilyteste-48d45.firebaseapp.com",
+        projectId: "emilyteste-48d45",
+        storageBucket: "emilyteste-48d45.appspot.com",
+        messagingSenderId: "524687159099",
+        appId: "1:524687159099:web:0f8874d185d8281807511e",
+        measurementId: "G-XDER2MH4XL"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    const signupForm = document.getElementById('register-form');
+
+    signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+        // User is signed up.
+            const user = userCredential.user;
+            alert("Usuário criado com sucesso");
+            window.location.href = login;
+        })
+        .catch((error) => {
+        // Handle errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+        });
+    });
+</script>

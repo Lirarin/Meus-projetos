@@ -1,4 +1,4 @@
-views<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -24,7 +24,8 @@ views<!DOCTYPE html>
               <li><a href="/views/download/Download.html">Downloads</a></li>
               <li><a href="/views/login/Login.html">Login</a></li>
               <li><a href="/views/cadastro/Cadastro.html">Cadastro</a></li>
-            </ul>views
+              <li><a onclick="logout()">Deslogar</a></li>
+            </ul>
         </nav>
     </header>
     <main>
@@ -60,9 +61,9 @@ views<!DOCTYPE html>
                 </p>
                 </a>
               </li>
-             <li><a href="#">
+              <li><a href="#">
                 <h3>Vendas</h3>
-                 <p>
+                  <p>
                     A franquia, assim como Call of Duty, é um dos produtos de entretenimento mais rentáveis da história, 
                     arrecadando com seu último jogo quase um bilhão de dólares nas primeiras 24 horas de lançamento. 
                     Bateu também vários recordes no Guinness Book, inclusive como o jogo de ação de videogame a alcançar 
@@ -70,9 +71,9 @@ views<!DOCTYPE html>
                     das maiores exportações do Reino Unido. Até Novembro de 2016, a série Grand Theft Auto já havia 
                     vendido mais de 250 milhões de cópias, tornando-se assim na quinta franquia de videogames mais vendida 
                     de todos os tempos.  
-                 </p>
+                  </p>
                 </a>
-             </li>
+              </li>
             </ul>
         </section>
         <section class="categories">
@@ -87,3 +88,34 @@ views<!DOCTYPE html>
     <div class="image"></div>
 </body>
 </html>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyAjxgYLuiOV5OsNbBhwSh8OYYlZ7Nhoznc",
+      authDomain: "emilyteste-48d45.firebaseapp.com",
+      projectId: "emilyteste-48d45",
+      storageBucket: "emilyteste-48d45.appspot.com",
+      messagingSenderId: "524687159099",
+      appId: "1:524687159099:web:0f8874d185d8281807511e",
+      measurementId: "G-XDER2MH4XL"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+    // Log out function
+    function logout() {
+      firebase.auth().signOut()
+        .then(() => {
+          // Sign-out successful.
+          alert("Deslogado com sucesso");
+          window.location.href = "../login/login.html"; // Redirect to login.html
+        })
+        .catch((error) => {
+          // An error happened.
+        });
+    }
+  </script>

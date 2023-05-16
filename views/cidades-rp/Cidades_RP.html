@@ -24,6 +24,7 @@
             <li><a href="/views/download/Download.html">Downloads</a></li>
             <li><a href="/views/login/Login.html">Login</a></li>
             <li><a href="/views/cadastro/Cadastro.html">Cadastro</a></li>
+            <li><a onclick="logout()">Deslogar</a></li>
           </ul>
         </nav>
       </header>
@@ -35,32 +36,32 @@
               <a href="https://discord.com/invite/cidadealtarp">  
                 <h3>Cidade alta</h3>
                 <p>
-                   É um dos melhores servidores de GTA RP. Isso por conta da sua organização, dos eventos e das pessoas que o frequentam
-                   ou que já frequentaram. Quem está por trás da sua criação é o PlayHard, fundador da Loud. <br>
-                   Por ser um dos maiores servidores de GTA RP algumas marcas bem famosas já promoveram eventos por lá, sendo elas: <br> <br>
-                   • Ifood <br>
-                   • Jeep <br>
-                   • Outback <br>
-                   • Trident <br>
-                   • Tinder <br>
-                   • Engov <br>
-                   • Brahma <br>
-                   • Submarino <br> <br>
-                   E muitos famosos também já apareceram por lá: <br> <br>
-                   • Anitta <br>
-                   • Luisa Sonza <br>
-                   • Gabriel Jesus <br>
-                   • Mumuzinho <br>
-                   • Léo Santana <br>
-                   • Mc Caveirinha <br>
-                   • Lia Clark <br>
-                   • Pepita <br>
-                   • Monobloco <br> 
-                   E muitos outros famosos. <br> <br>
-                   Por ser gigante é bem concorrida, por isso você precisa entrar no servidor deles do discord e ficar de olho quando as whitelist 
-                   abrem. <br>
-                   Sugerimos que vocês dêm uma olhada nas regras de conduta deles para fazer o processo da whitelist. Estude e fique afiado e com tudo na ponta da língua
-                   e suas chances de entrar serão maiores.  (Cique aqui e entre no discord do Cidade Alta).
+                    É um dos melhores servidores de GTA RP. Isso por conta da sua organização, dos eventos e das pessoas que o frequentam
+                    ou que já frequentaram. Quem está por trás da sua criação é o PlayHard, fundador da Loud. <br>
+                    Por ser um dos maiores servidores de GTA RP algumas marcas bem famosas já promoveram eventos por lá, sendo elas: <br> <br>
+                    • Ifood <br>
+                    • Jeep <br>
+                    • Outback <br>
+                    • Trident <br>
+                    • Tinder <br>
+                    • Engov <br>
+                    • Brahma <br>
+                    • Submarino <br> <br>
+                    E muitos famosos também já apareceram por lá: <br> <br>
+                    • Anitta <br>
+                    • Luisa Sonza <br>
+                    • Gabriel Jesus <br>
+                    • Mumuzinho <br>
+                    • Léo Santana <br>
+                    • Mc Caveirinha <br>
+                    • Lia Clark <br>
+                    • Pepita <br>
+                    • Monobloco <br> 
+                    E muitos outros famosos. <br> <br>
+                    Por ser gigante é bem concorrida, por isso você precisa entrar no servidor deles do discord e ficar de olho quando as whitelist 
+                    abrem. <br>
+                    Sugerimos que vocês dêm uma olhada nas regras de conduta deles para fazer o processo da whitelist. Estude e fique afiado e com tudo na ponta da língua
+                    e suas chances de entrar serão maiores.  (Cique aqui e entre no discord do Cidade Alta).
                 </p>
               </a>
             </li>
@@ -155,3 +156,42 @@
       <script src=""></script>
 </body>
 </html>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyAjxgYLuiOV5OsNbBhwSh8OYYlZ7Nhoznc",
+      authDomain: "emilyteste-48d45.firebaseapp.com",
+      projectId: "emilyteste-48d45",
+      storageBucket: "emilyteste-48d45.appspot.com",
+      messagingSenderId: "524687159099",
+      appId: "1:524687159099:web:0f8874d185d8281807511e",
+      measurementId: "G-XDER2MH4XL"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+    // Log out function
+    function logout() {
+      firebase.auth().signOut()
+        .then(() => {
+          // Sign-out successful.
+          alert("Deslogado com sucesso");
+          window.location.href = "../login/login.html"; // Redirect to login.html
+        })
+        .catch((error) => {
+          // An error happened.
+        });
+    }
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in, allow access to the HTML file
+      } else {
+        alert("usuário não logado, faça seu login")
+        window.location.replace("../login/login.html");
+      }
+    });
+  </script>    

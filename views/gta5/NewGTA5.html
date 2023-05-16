@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/views/gta5/NewGTA5.css">views
+    <link rel="stylesheet" href="/views/gta5/NewGTA5.css">
     <title>GTA V</title>
 </head>
 <body>
@@ -24,7 +24,8 @@
               <li><a href="/views/download/Download.html">Downloads</a></li>
               <li><a href="/views/login/Login.html">Login</a></li>
               <li><a href="/views/cadastro/Cadastro.html">Cadastro</a></li>
-            </ul>views
+              <li><a onclick="logout()">Deslogar</a></li>
+            </ul>
         </nav>
     </header>
     <div class="imag"></div>
@@ -274,3 +275,43 @@
     </main>
 </body>
 </html>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyAjxgYLuiOV5OsNbBhwSh8OYYlZ7Nhoznc",
+      authDomain: "emilyteste-48d45.firebaseapp.com",
+      projectId: "emilyteste-48d45",
+      storageBucket: "emilyteste-48d45.appspot.com",
+      messagingSenderId: "524687159099",
+      appId: "1:524687159099:web:0f8874d185d8281807511e",
+      measurementId: "G-XDER2MH4XL"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+    // Log out function
+    function logout() {
+      firebase.auth().signOut()
+        .then(() => {
+          // Sign-out successful.
+          alert("Deslogado com sucesso");
+          window.location.href = "../login/login.html"; // Redirect to login.html
+        })
+        .catch((error) => {
+          // An error happened.
+        });
+    }
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in, allow access to the HTML file
+      } else {
+        alert("usuário não logado, faça seu login")
+        window.location.replace("../login/login.html");
+      }
+    });
+    
+  </script>
